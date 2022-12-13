@@ -3,6 +3,8 @@ import { collection, query, where } from "@firebase/firestore";
 import { firestore } from "@/plugins/firebase";
 import { useCollection, useCurrentUser } from "vuefire";
 
+import AppointmentCalendar from "@/components/AppointmentCalendar.vue";
+
 const user = useCurrentUser();
 
 const appointmentRef = collection(firestore, "appointment");
@@ -16,6 +18,9 @@ const appointments = useCollection(
 
   <div class="mt-10">
     <p class="text-h6">Next appointments</p>
+
+    <AppointmentCalendar />
+
     <v-table>
       <thead>
         <tr>

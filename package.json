@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullcalendar/core": "^5.11.3",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/vue3": "^5.11.3",
     "@mdi/font": "^7.0.96",
     "firebase": "^9.14.0",
     "vue": "^3.2.41",
