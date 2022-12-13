@@ -13,20 +13,24 @@ const appointments = useCollection(
 
 <template>
   <h1>Dashboard</h1>
-  <v-table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Client</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="appointment in appointments">
-        <td>{{ appointment.date }}</td>
-        <td>{{ appointment.description }}</td>
-        <td>{{ appointment.client_uid }}</td>
-      </tr>
-    </tbody>
-  </v-table>
+
+  <div class="mt-10">
+    <p class="text-h6">Next appointments</p>
+    <v-table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Client</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="appointment in appointments">
+          <td>{{ appointment.date }}</td>
+          <td>{{ appointment.client_uid }}</td>
+          <td>{{ appointment.description }}</td>
+        </tr>
+      </tbody>
+    </v-table>
+  </div>
 </template>
