@@ -21,25 +21,29 @@ const form = reactive({
 
 const register = async () => {
   try {
-    const { user } = await createUserWithEmailAndPassword(
-      auth,
-      form.email,
-      form.password
-    );
+    navigator.geolocation.getCurrentPosition(async ({ coords }) => {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
 
-    await addDoc(collection(firestore, "provider"), {
-      uid: user.uid,
-      firstname: form.firstname,
-      lastname: form.lastname,
+      await addDoc(collection(firestore, "provider"), {
+        uid: user.uid,
+        firstname: form.firstname,
+        lastname: form.lastname,
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+
+      await signInWithEmailAndPassword(auth, form.email, form.password);
+
+      await updateCurrentUserProfile({
+        displayName: `${form.firstname} ${form.lastname}`,
+      });
+
+      router.push({ name: "Dashboard" });
     });
-
-    await signInWithEmailAndPassword(auth, form.email, form.password);
-
-    await updateCurrentUserProfile({
-      displayName: `${form.firstname} ${form.lastname}`,
-    });
-
-    router.push({ name: "Dashboard" });
   } catch (error) {
     //
   }
